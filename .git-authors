@@ -1,0 +1,3 @@
+authors:
+  ss: Sebastian Schalow
+email_template: '{{with replace .Name " " "." -1}}{{toLower .}}{{end}}@volkswagen.de'
