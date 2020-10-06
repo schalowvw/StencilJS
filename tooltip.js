@@ -2,6 +2,7 @@ class Tooltip extends HTMLElement {
   constructor() {
     super();
     this._tooltipContainer;
+    this._tooltipText = ':TEXT ATTRIB NOT SET:';
   }
 
   connectedCallback() {
@@ -10,11 +11,14 @@ class Tooltip extends HTMLElement {
     tooltipIcon.addEventListener('mouseenter', this._showTooltip);
     tooltipIcon.addEventListener('mouseleave', this._hideTooltip);
     this.appendChild(tooltipIcon);
+
+    const tooltipText = this.getAttribute('text');
+    this._tooltipText = tooltipText ? tooltipText : this._tooltipText;
   }
 
   _showTooltip = () => {
     this._tooltipContainer = document.createElement('div');
-    this._tooltipContainer.textContent = 'This is the tooltip text';
+    this._tooltipContainer.textContent = this._tooltipText;
     this.appendChild(this._tooltipContainer);
   };
 
